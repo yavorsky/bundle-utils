@@ -1,0 +1,51 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "parser": "babel-eslint",
+  "extends": ["airbnb/base", "plugin:flowtype/recommended"],
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "rules": {
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/extensions": [1, "never"],
+    "arrow-parens": ["error", "as-needed"],
+    "no-underscore-dangle": "off",
+    "eqeqeq": "off",
+    "no-param-reassign": "off",
+    "class-method-use-this": "off",
+    "no-restricted-syntax": "off",
+    "no-prototype-builtins": "off",
+    "no-console": "off",
+    "no-use-before-define": "off",
+    "no-unused-vars": ["error", { "varsIgnorePattern": "React" }],
+    "camelcase": "off",
+    "class-methods-use-this": "off",
+    "flowtype/space-before-type-colon": "off",
+    "flowtype/generic-spacing": "off",
+    "import/prefer-default-export": "off",
+    "arrow-body-style": "off",
+    "no-plusplus": "off",
+    "no-confusing-arrow": "off",
+    "indent": "off",
+    "comma-dangle": ["error", "only-multiline"],
+    "global-require": "off",
+    "new-parens": "off"
+  },
+  "plugins": [
+    "flowtype",
+    "jest"
+  ],
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  }
+}

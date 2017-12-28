@@ -1,0 +1,60 @@
+{
+  "name": "bundle-utils",
+  "version": "0.0.1-beta.0",
+  "description": "Determine best bundle for useragent on the flight.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yavorsky/bundle-utils.git"
+  },
+  "keywords": [
+    "express",
+    "webpack",
+    "node",
+    "babel",
+    "babel-preset-env"
+  ],
+  "author": "Artem Yavorsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yavorsky/bundle-utils.git"
+  },
+  "homepage": "https://github.com/yavorsky/bundle-utils",
+  "scripts": {
+    "test": "echo I'm really sorry :) Work in progress...",
+    "start": "npm run build && npm run server:start",
+    "server:start": "node server",
+    "server:dev": "nodemon server",
+    "build": "node_modules/.bin/webpack",
+    "build-examples": "node ./utils/scripts/generate-examples.js",
+    "eslint": "eslint ."
+  },
+  "dependencies": {
+    "@babel/cli": "7.0.0-beta.36",
+    "@babel/core": "7.0.0-beta.36",
+    "@babel/preset-env": "7.0.0-beta.36",
+    "@babel/polyfill": "7.0.0-beta.36",
+    "@babel/register": "7.0.0-beta.36",
+    "babel-polyfill": "7.0.0-beta.3",
+    "babel-loader": "8.0.0-beta.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.1.2",
+    "browserslist": "^2.10.0",
+    "cross-env": "^1.0.7",
+    "eslint": "^1.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-flowtype": "^2.37.0",
+    "express": "^4.13.3",
+    "express-useragent": "^1.0.8",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "flow-bin": "^0.55.0",
+    "flow-typed": "^2.1.5",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "rimraf": "^2.4.3",
+    "stats-webpack-plugin": "^0.2.1",
+    "webpack": "3.8.1",
+    "webpack-dev-middleware": "^1.2.0"
+  }
+}
