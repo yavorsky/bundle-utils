@@ -53,17 +53,6 @@ module.exports = [
     filename: 'async-generator.js',
   },
   {
-    code: `async function* x () {
-  yield* fn();
-  await fn();
-  yield* fn();
-  yield* fn();
-}
-`,
-    count: 300,
-    filename: 'async-generator.js',
-  },
-  {
     code: `Promise.resolve();
 [].includes;
 "".includes;
