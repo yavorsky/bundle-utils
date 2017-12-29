@@ -31,6 +31,7 @@ module.exports = mapConfigToTargets(({ browsers, id }) => {
                     browsers,
                   },
                   exclude: ["babel-plugin-check-constants"],
+                  shippedProposals: true,
                   useBuiltIns: 'usage',
                 },
               ],

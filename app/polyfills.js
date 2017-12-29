@@ -5,4 +5,4 @@ new Map;
 new Set;
 Symbol();
 Array.from;
-Reflect.construct();
+Reflect.construct(class {}, []);

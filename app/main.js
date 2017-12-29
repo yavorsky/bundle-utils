@@ -1,7 +1,9 @@
-import './class';
 import './async';
-import './for-of';
-import './tagged';
+import './class';
 import './destructuring';
+import './for-of';
 import './generator';
+import './async-generator';
+import './async-generator';
 import './polyfills';
+import './tagged';
