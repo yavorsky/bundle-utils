@@ -2,6 +2,8 @@
 
 ## 🚧 WIP 🚧
 
+![How it works](https://user-images.githubusercontent.com/1521229/34436061-ef845750-ec9a-11e7-9b66-d5e8d00d3d27.png)
+
 ### How to try
 
 #### `npm start`
