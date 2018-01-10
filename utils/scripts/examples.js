@@ -24,9 +24,7 @@ module.exports = [
     filename: 'destructuring.js',
   },
   {
-    code: `for (const i of new Set) {
-  const a = 1;
-}
+    code: `for (const i of new Set) {}
 `,
     count: 300,
     filename: 'for-of.js',
