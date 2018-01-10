@@ -29,7 +29,7 @@ const mapConfigToTargets = (opts, fn) => {
   const optsIsDefault = optsIsHandler || opts == null;
   const options = optsIsDefault ? defaultOptions : opts;
 
-  const parsedTargets = options.browsers || readTargetsFromConfig(options.root);
+  const parsedTargets = options.targets || readTargetsFromConfig(options.root);
   return parsedTargets.map((browsers, id) => {
     return handler({ browsers, id: id.toString() });
   });

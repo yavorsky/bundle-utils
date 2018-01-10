@@ -3,8 +3,10 @@
 */
 
 const browserslist = require('browserslist');
+const parseUA = require('ua-parser-js');
 const path = require('path');
 const fs = require('fs');
+const { sync } = require('glob');
 const { readTargetsFromConfig } = require('./env-bundles');
 
 const getDefaultRoot = () => process.cwd();
@@ -15,10 +17,14 @@ const defaultRoot = getDefaultRoot();
 //   const webpackConfigPath = path.join(root, 'webpack.config.js');
 // };
 
-const getBundleStatistics = (root = defaultRoot, browsers) => {
+const getBundleStatistics = (bundleRoot, browsers) => {
   return browsers.map((query, id) => {
-    const bundlesPath = path.join(root, 'dist', `${id}`, 'main.js');
-    return fs.statSync(bundlesPath).size;
+    const bundleFiles = sync(`${bundleRoot}/${id}/**/*.js`);
+    // const bundlePath = path.join(root, 'dist', `${id}`, 'main.js');
+    return bundleFiles.reduce((total, bundlePath) => {
+      total += fs.statSync(bundlePath).size;
+      return total;
+    }, 0);
   });
 };
 
@@ -39,8 +45,13 @@ const logBestBundle = ({ browser, version, id, size, query }) => {
 query: ${query}
 browser: ${browser}
 version: ${version}
-size: ${size / 1000}KB
+size: ${size / 1000}kB
 `);
+};
+
+const initSuccessLog = (config, stats) => {
+  console.log(`Serving ${config.length} bundles:\n`);
+  console.log(config.map((query, i) => `${query} [${stats[i] / 1000}kB]`).join('\n'))
 };
 
 const getBestBundleDataFromConfig = ({ config, browser, version, stats }) => {
@@ -60,12 +71,21 @@ const getBestBundleDataFromConfig = ({ config, browser, version, stats }) => {
 const normalizeUseragent = browser => browser.toLowerCase();
 const normalizeVersion = version => parseFloat(version);
 
-const config = readTargetsFromConfig(defaultRoot);
-const stats = getBundleStatistics(defaultRoot, config);
+const idGetterWithStats = ({ stats, config, withUAParse }) => data => {
+  let browser, version;
 
-const getBundleIdByUseragent = useragent => {
-  const browser = normalizeUseragent(useragent.browser);
-  const version = normalizeVersion(useragent.version);
+  if (withUAParse) {
+    const parsed = parseUA(data.headers['user-agent']).browser;
+    browser = parsed.name;
+    version = parsed.version;
+  } else {
+    console.log(data, 2)
+    browser = data.browser
+    version = data.version;
+  }
+
+  browser = normalizeUseragent(browser);
+  version = normalizeVersion(version);
 
   const bestBundleData = getBestBundleDataFromConfig({ config, browser, version, stats });
   if (bestBundleData) {
@@ -77,6 +97,21 @@ const getBundleIdByUseragent = useragent => {
   return null;
 };
 
+const createBundleGetter = ({ stats, config }) => {
+  return {
+    getBundleIdByUseragent: idGetterWithStats({ stats, config }),
+    getBundleIdByRequest: idGetterWithStats({ stats, config, withUAParse: true }),
+  };
+};
+
+const initializeBundleGetter = opts => {
+  const bundlesRoot = opts.bundlesRoot || path.join(defaultRoot, 'dist');
+  const config = opts.targets ||  readTargetsFromConfig(defaultRoot);
+  const stats = getBundleStatistics(bundlesRoot, config);
+  initSuccessLog(config, stats);
+  return createBundleGetter({ stats, config });
+};
+
 module.exports = {
-  getBundleIdByUseragent
+  initializeBundleGetter
 };
