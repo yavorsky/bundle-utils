@@ -54,10 +54,17 @@ const initSuccessLog = (config, stats) => {
   console.log(config.map((query, i) => `${query} [${stats[i] / 1000}kB]`).join('\n'))
 };
 
+const browsersMap = {
+  'mobile android': 'and_chr',
+  'opera mini': 'op_mini',
+  'mobile safari': 'ios_saf'
+};
+
 const getBestBundleDataFromConfig = ({ config, browser, version, stats }) => {
   return config.reduce((best, current, id)  => {
     const bestSize = best ? best.size : 0;
     const targets = queryToMap(current);
+    browser = browsersMap[browser] || browser;
     if (targets[browser] && (targets[browser] <= version || targets[browser] === 'all')) {
       const currBundleSize = stats[id];
       if (!bestSize || currBundleSize < bestSize) {
@@ -86,7 +93,6 @@ const idGetterWithStats = ({ stats, config, withUAParse }) => data => {
 
   browser = normalizeUseragent(browser);
   version = normalizeVersion(version);
-
   const bestBundleData = getBestBundleDataFromConfig({ config, browser, version, stats });
   if (bestBundleData) {
     const { id, size, query } = bestBundleData;

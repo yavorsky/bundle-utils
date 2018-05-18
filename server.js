@@ -28,7 +28,6 @@ if (isDeveloping) {
     }
     const bundleId = getBundleIdByRequest(req);
     const fullPath = path.join(__dirname, 'dist', bundleId, url)
-    console.log(fullPath);
     res.write(fs.readFileSync(path.join(fullPath)));
     res.end();
   });
