@@ -2,7 +2,7 @@
   "name": "bundle-utils",
   "version": "0.0.1-beta.0",
   "description": "Determine best bundle for useragent on the flight.",
-  "main": "server.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/yavorsky/bundle-utils.git"
