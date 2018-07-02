@@ -9,6 +9,7 @@ to acces needed files.
 
 const fs = require('fs');
 const path = require('path');
+const md5 = require('md5');
 
 const BROWSERS_CONFIG_NAME = '.browsers.json';
 const defaultOptions = {
@@ -31,12 +32,11 @@ const mapConfigToTargets = (opts, fn) => {
   const options = optsIsDefault ? defaultOptions : opts;
 
   const parsedTargets = options.targets || readTargetsFromConfig(options.root);
-  return parsedTargets.map((browsers, id) => {
-    return handler({ browsers, id: id.toString() });
+  return parsedTargets.map(browsers => {
+    return handler({ browsers, id: md5(browsers) });
   });
 };
 
-// TODO: Optimize this. Make more flexible for different cases.
 const getBundleLocationWithId = (location, id) => path.join(location, id);
 
 module.exports = {
