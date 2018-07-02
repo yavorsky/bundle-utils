@@ -2,12 +2,7 @@
 
 const path = require('path');
 const express = require('express');
-const webpack = require('webpack');
 const fs = require('fs');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const useragent = require('express-useragent');
-const config = require('./webpack.config.js');
 const { initializeBundleGetter } = require('./utils/get-bundle');
 
 const bundlesRoot = path.join(__dirname, 'dist');

@@ -57,8 +57,8 @@ const generateExample = ({
   writeExample(generateRepeatedCode(code, count), location);
 };
 
-const getImportsFromExamples = examples => {
-  return examples.reduce((total, current) => {
+const getImportsFromExamples = examplesArray => {
+  return examplesArray.reduce((total, current) => {
     return total.concat(`import './${current.filename.slice(0, -3)}';
 `);
   }, '');
