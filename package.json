@@ -20,7 +20,15 @@
     "url": "https://github.com/yavorsky/bundle-utils.git"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test/jest.config.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/test/jest.config.js",
+    "collectCoverageFrom": [
+        "./utils/**/*.js",
+        "./*.js"
+    ],
+    "coverageReporters": [
+        "text",
+        "lcov"
+    ]
   },
   "homepage": "https://github.com/yavorsky/bundle-utils",
   "scripts": {
@@ -30,7 +38,8 @@
     "build": "node_modules/.bin/webpack",
     "build:examples": "node ./utils/scripts/generate-examples.js",
     "eslint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@babel/cli": "7.0.0-beta.51",
