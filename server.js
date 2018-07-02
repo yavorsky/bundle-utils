@@ -7,15 +7,15 @@ const { initializeBundleGetter } = require('./utils/get-bundle');
 const bundlesRoot = path.join(__dirname, 'dist');
 const { getBundleIdByRequest } = initializeBundleGetter({ bundlesRoot });
 
-const isDeveloping = process.env.NODE_ENV !== "production";
+const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
 if (isDeveloping) {
   app.get('*', (req, res) => {
     let { url } = req;
-    if (!url || url === "/") url = "index.html";
-    if (url === "/favicon.ico") {
+    if (!url || url === '/') url = 'index.html';
+    if (url === '/favicon.ico') {
       res.end();
       return;
     }
@@ -36,7 +36,7 @@ app.listen(port, '0.0.0.0', err => {
     console.log(err);
   }
   console.info(
-    "==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.",
+    '==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.',
     port,
     port
   );
