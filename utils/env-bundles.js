@@ -8,6 +8,7 @@ to acces needed files.
 */
 
 const fs = require('fs');
+const pify = require('pify');
 const path = require('path');
 
 const BROWSERS_CONFIG_NAME = '.browsers.json';
@@ -15,11 +16,14 @@ const defaultOptions = {
   root: process.cwd(),
 };
 
-const readTargetsFromConfig = root => {
+const readFileAsync = pify(fs.readFile);
+
+const readTargetsFromConfig = async root => {
   if (!root) root = process.cwd();
   const pathname = path.join(root, BROWSERS_CONFIG_NAME);
-  const config = fs.readFileSync(pathname);
+  const config = await readFileAsync(pathname);
   const targets = JSON.parse(config);
+
   return targets;
 };
 

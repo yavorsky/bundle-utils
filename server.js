@@ -2,7 +2,10 @@
 const path = require('path');
 const express = require('express');
 const fs = require('fs');
+const pify = require('pify');
 const { initializeBundleGetter } = require('./utils/get-bundle');
+
+const readFileAsync = pify(fs.readFile);
 
 const bundlesRoot = path.join(__dirname, 'dist');
 const { getBundleIdByRequest } = initializeBundleGetter({ bundlesRoot });
@@ -12,7 +15,7 @@ const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
 if (isDeveloping) {
-  app.get('*', (req, res) => {
+  app.get('*', async (req, res) => {
     let { url } = req;
     if (!url || url === '/') url = 'index.html';
     if (url === '/favicon.ico') {
@@ -21,7 +24,9 @@ if (isDeveloping) {
     }
     const bundleId = getBundleIdByRequest(req);
     const fullPath = path.join(__dirname, 'dist', bundleId, url);
-    res.write(fs.readFileSync(path.join(fullPath)));
+    const bundleFile = await readFileAsync(path.join(fullPath));
+
+    res.write(bundleFile);
     res.end();
   });
 } else {
