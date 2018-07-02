@@ -5,8 +5,6 @@ const PORT = 4000;
 
 const server = http.createServer((request, response) => {
   const parsed = parseUA(request.headers["user-agent"]).browser;
-  browser = parsed.name;
-  version = parsed.version;
   response.end(JSON.stringify(parsed));
 });
 
