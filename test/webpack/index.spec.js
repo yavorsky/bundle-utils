@@ -10,7 +10,6 @@ describe('webpack', () => {
       generateExamples('single-bundle');
       appLocation = path.join(__dirname, 'fixtures/single-bundle');
       const configPath = path.join(appLocation, 'webpack.config.js');
-      const entry = path.join(appLocation, 'app/main.js');
       execSync(`webpack --config=${configPath}`);
     });
 

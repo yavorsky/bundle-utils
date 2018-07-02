@@ -83,8 +83,8 @@ const normalizeUseragent = browser => browser.toLowerCase();
 const normalizeVersion = version => parseFloat(version);
 
 const idGetterWithStats = ({ stats, config, withUAParse }) => data => {
-  let browser; let
-version;
+  let browser;
+  let version;
 
   if (withUAParse) {
     const parsed = parseUA(data.headers['user-agent']).browser;
