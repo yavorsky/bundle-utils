@@ -16,7 +16,6 @@ const { getBundleIdByRequest } = initializeBundleGetter({ bundlesRoot });
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
-// app.use(useragent.express());
 
 if (isDeveloping) {
   app.get('*', function response(req, res) {

@@ -19,27 +19,29 @@
   "bugs": {
     "url": "https://github.com/yavorsky/bundle-utils.git"
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/test/jest.config.js"
+  },
   "homepage": "https://github.com/yavorsky/bundle-utils",
   "scripts": {
-    "test": "echo I'm really sorry :) Work in progress...",
     "start": "npm run build:examples && npm run build && npm run server:start",
     "server:start": "node server",
     "server:dev": "nodemon server",
     "build": "node_modules/.bin/webpack",
     "build:examples": "node ./utils/scripts/generate-examples.js",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "test": "jest"
   },
   "dependencies": {
-    "@babel/cli": "7.0.0-beta.36",
-    "@babel/core": "7.0.0-beta.36",
-    "@babel/polyfill": "7.0.0-beta.36",
-    "@babel/register": "7.0.0-beta.36",
-    "babel-polyfill": "7.0.0-beta.3",
-    "ua-parser-js": "^0.7.17",
-    "babel-loader": "8.0.0-beta.0"
+    "@babel/cli": "7.0.0-beta.51",
+    "@babel/core": "7.0.0-beta.51",
+    "@babel/polyfill": "7.0.0-beta.51",
+    "@babel/register": "7.0.0-beta.51",
+    "babel-loader": "^8.0.0-beta.4",
+    "ua-parser-js": "^0.7.17"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.51",
     "babel-eslint": "^8.1.2",
     "browserslist": "^2.10.0",
     "cross-env": "^1.0.7",
@@ -51,11 +53,14 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "flow-bin": "^0.55.0",
     "flow-typed": "^2.1.5",
+    "fs-extra": "^6.0.1",
+    "glob": "^7.1.2",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "rimraf": "^2.4.3",
     "stats-webpack-plugin": "^0.2.1",
     "webpack": "3.8.1",
+    "webpack-cli": "^3.0.8",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.21.2"
   }
