@@ -64,7 +64,7 @@ Reflect.construct(class {}, []);
     filename: 'polyfills.js',
   },
   {
-    code: "`a${1}c${2}${3}`;\n\n",
+    code: '`a${1}c${2}${3}`;\n\n',
     count: 300,
     filename: 'tagged.js',
   },
