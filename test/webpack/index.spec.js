@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const {generateExamples, removeExamples} = require('../../utils/scripts/generate-examples');
+const { generateExamples, removeExamples } = require('../../utils/scripts/generate-examples');
 
 describe('webpack', () => {
   describe('`single-bundle` with > 1% usage', () => {
@@ -10,7 +10,6 @@ describe('webpack', () => {
       generateExamples('single-bundle');
       appLocation = path.join(__dirname, 'fixtures/single-bundle');
       const configPath = path.join(appLocation, 'webpack.config.js');
-      const entry = path.join(appLocation, 'app/main.js');
       execSync(`webpack --config=${configPath}`);
     });
 
@@ -27,5 +26,5 @@ describe('webpack', () => {
       const secondOutput = path.join(appLocation, 'dist', '1');
       expect(fs.existsSync(secondOutput)).toBeFalsy();
     });
-  })
-})
+  });
+});

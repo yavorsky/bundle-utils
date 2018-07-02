@@ -32,31 +32,33 @@ const writeExample = (code, location) => {
   fs.writeFileSync(location, code);
 };
 
-const normalizeDistDirectory = (dirname) => {
+const normalizeDistDirectory = dirname => {
   return path.join(__dirname, '../../test/webpack/fixtures', dirname, 'dist');
-}
+};
 
-const normalizeAppDirectory = (dirname) => {
+const normalizeAppDirectory = dirname => {
   return path.join(__dirname, '../../test/webpack/fixtures', dirname, 'app');
-}
+};
 
 const normalizeLocation = (filename, dirname) => {
   return path.join(normalizeAppDirectory(dirname), filename);
-}
+};
 
 const generateRepeatedCode = (code, count) => {
   return code.repeat(count);
 };
 
-const generateExample = ({ dirname, code, count, filename }) => {
+const generateExample = ({
+ dirname, code, count, filename
+}) => {
   const location = normalizeLocation(filename, dirname);
 
   removeIfExists(location);
   writeExample(generateRepeatedCode(code, count), location);
 };
 
-const getImportsFromExamples = examples => {
-  return examples.reduce((total, current) => {
+const getImportsFromExamples = examplesArray => {
+  return examplesArray.reduce((total, current) => {
     return total.concat(`import './${current.filename.slice(0, -3)}';
 `);
   }, '');

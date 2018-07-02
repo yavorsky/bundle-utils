@@ -1,15 +1,10 @@
-/* eslint no-console: 0 */
 
-const path = require("path");
-const express = require("express");
-const webpack = require("webpack");
-const fs = require("fs");
-const webpackMiddleware = require("webpack-dev-middleware");
-const webpackHotMiddleware = require("webpack-hot-middleware");
-const config = require("./webpack.config.js");
-const useragent = require("express-useragent");
-const { initializeBundleGetter } = require("./utils/get-bundle");
-const bundlesRoot = path.join(__dirname, "dist");
+const path = require('path');
+const express = require('express');
+const fs = require('fs');
+const { initializeBundleGetter } = require('./utils/get-bundle');
+
+const bundlesRoot = path.join(__dirname, 'dist');
 const { getBundleIdByRequest } = initializeBundleGetter({ bundlesRoot });
 
 const isDeveloping = process.env.NODE_ENV !== "production";
@@ -17,7 +12,7 @@ const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
 if (isDeveloping) {
-  app.get("*", function response(req, res) {
+  app.get('*', (req, res) => {
     let { url } = req;
     if (!url || url === "/") url = "index.html";
     if (url === "/favicon.ico") {
@@ -25,18 +20,18 @@ if (isDeveloping) {
       return;
     }
     const bundleId = getBundleIdByRequest(req);
-    const fullPath = path.join(__dirname, "dist", bundleId, url);
+    const fullPath = path.join(__dirname, 'dist', bundleId, url);
     res.write(fs.readFileSync(path.join(fullPath)));
     res.end();
   });
 } else {
-  app.use(express.static(__dirname + "/dist"));
-  app.get("*", function response(req, res) {
-    res.sendFile(path.join(__dirname, "dist/index.html"));
+  app.use(express.static(`${__dirname}/dist`));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
   });
 }
 
-app.listen(port, "0.0.0.0", function onStart(err) {
+app.listen(port, '0.0.0.0', err => {
   if (err) {
     console.log(err);
   }
