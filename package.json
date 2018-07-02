@@ -22,12 +22,12 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/test/jest.config.js",
     "collectCoverageFrom": [
-        "./utils/**/*.js",
-        "./*.js"
+      "./utils/**/*.js",
+      "./*.js"
     ],
     "coverageReporters": [
-        "text",
-        "lcov"
+      "text",
+      "lcov"
     ]
   },
   "homepage": "https://github.com/yavorsky/bundle-utils",
@@ -71,6 +71,7 @@
     "jest": "^23.2.0",
     "rimraf": "^2.4.3",
     "stats-webpack-plugin": "^0.2.1",
+    "supertest": "^3.1.0",
     "webpack": "3.8.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-middleware": "^1.2.0",

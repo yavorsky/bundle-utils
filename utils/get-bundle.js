@@ -120,7 +120,7 @@ const createBundleGetter = ({ stats, config }) => {
 
 const initializeBundleGetter = opts => {
   const bundlesRoot = opts.bundlesRoot || path.join(defaultRoot, 'dist');
-  const config = opts.targets || readTargetsFromConfig(defaultRoot);
+  const config = opts.targets || readTargetsFromConfig(opts.root || defaultRoot);
   const stats = getBundleStatistics(bundlesRoot, config);
   initSuccessLog(config, stats);
   return createBundleGetter({ stats, config });
