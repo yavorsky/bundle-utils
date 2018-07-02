@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 const {generateExamples, removeExamples} = require('../../utils/scripts/generate-examples');
 
 describe('webpack', () => {
-  describe('1 bundle with >1% usage', () => {
+  describe('`single-bundle` with > 1% usage', () => {
     let appLocation;
     beforeAll(() => {
       generateExamples('single-bundle');
