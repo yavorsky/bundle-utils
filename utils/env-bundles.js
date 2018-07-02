@@ -20,6 +20,7 @@ const readTargetsFromConfig = root => {
   const pathname = path.join(root, BROWSERS_CONFIG_NAME);
   const config = fs.readFileSync(pathname);
   const targets = JSON.parse(config);
+
   return targets;
 };
 
@@ -39,6 +40,7 @@ const mapConfigToTargets = (opts, fn) => {
 const getBundleLocationWithId = (location, id) => path.join(location, id);
 
 module.exports = {
+  BROWSERS_CONFIG_NAME,
   mapConfigToTargets,
   readTargetsFromConfig,
   getBundleLocationWithId,
