@@ -91,7 +91,6 @@ const idGetterWithStats = ({ stats, config, withUAParse }) => data => {
     browser = parsed.name;
     version = parsed.version;
   } else {
-    console.log(data, 2);
     browser = data.browser;
     version = data.version;
   }
