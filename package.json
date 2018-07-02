@@ -20,7 +20,15 @@
     "url": "https://github.com/yavorsky/bundle-utils.git"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test/jest.config.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/test/jest.config.js",
+    "collectCoverageFrom": [
+        "./utils/**/*.js",
+        "./*.js"
+    ],
+    "coverageReporters": [
+        "text",
+        "lcov"
+    ]
   },
   "homepage": "https://github.com/yavorsky/bundle-utils",
   "scripts": {
@@ -30,7 +38,8 @@
     "build": "node_modules/.bin/webpack",
     "build:examples": "node ./utils/scripts/generate-examples.js",
     "eslint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@babel/cli": "7.0.0-beta.51",
@@ -39,27 +48,28 @@
     "@babel/register": "7.0.0-beta.51",
     "babel-loader": "^8.0.0-beta.4",
     "md5": "2.2.1",
-    "ua-parser-js": "^0.7.17"
+    "ua-parser-js": "^0.7.18"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-beta.51",
-    "babel-eslint": "^8.1.2",
+    "babel-eslint": "^8.2.5",
     "browserslist": "^2.10.0",
-    "cross-env": "^1.0.7",
+    "cross-env": "^5.2.0",
     "eslint": "^5.0.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-flowtype": "^2.49.3",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jest": "^21.17.0",
-    "express": "^4.13.3",
-    "express-useragent": "^1.0.8",
+    "express": "^4.16.3",
+    "express-useragent": "^1.0.12",
     "extract-text-webpack-plugin": "^0.8.2",
-    "flow-bin": "^0.55.0",
-    "flow-typed": "^2.1.5",
+    "flow-bin": "^0.75.0",
+    "flow-typed": "^2.4.0",
     "fs-extra": "^6.0.1",
     "glob": "^7.1.2",
-    "html-loader": "^0.5.1",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^2.30.1",
+    "jest": "^23.2.0",
     "rimraf": "^2.4.3",
     "stats-webpack-plugin": "^0.2.1",
     "webpack": "3.8.1",
