@@ -15,7 +15,7 @@ const defaultOptions = {
   root: process.cwd(),
 };
 
-const readTargetsFromConfig = (root) => {
+const readTargetsFromConfig = root => {
   if (!root) root = process.cwd();
   const pathname = path.join(root, BROWSERS_CONFIG_NAME);
   const config = fs.readFileSync(pathname);
@@ -36,8 +36,7 @@ const mapConfigToTargets = (opts, fn) => {
 };
 
 // TODO: Optimize this. Make more flexible for different cases.
-const getBundleLocationWithId = (location, id) =>
-  path.join(location, id);
+const getBundleLocationWithId = (location, id) => path.join(location, id);
 
 module.exports = {
   mapConfigToTargets,

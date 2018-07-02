@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const {generateExamples, removeExamples} = require('../../utils/scripts/generate-examples');
+const { generateExamples, removeExamples } = require('../../utils/scripts/generate-examples');
 
 describe('webpack', () => {
   describe('`single-bundle` with > 1% usage', () => {
@@ -27,5 +27,5 @@ describe('webpack', () => {
       const secondOutput = path.join(appLocation, 'dist', '1');
       expect(fs.existsSync(secondOutput)).toBeFalsy();
     });
-  })
-})
+  });
+});
