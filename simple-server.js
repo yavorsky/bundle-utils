@@ -1,10 +1,10 @@
-const http = require("http");
-const parseUA = require("ua-parser-js");
+const http = require('http');
+const parseUA = require('ua-parser-js');
 
 const PORT = 4000;
 
 const server = http.createServer((request, response) => {
-  const parsed = parseUA(request.headers["user-agent"]).browser;
+  const parsed = parseUA(request.headers['user-agent']).browser;
   response.end(JSON.stringify(parsed));
 });
 
