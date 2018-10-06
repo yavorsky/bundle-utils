@@ -6,7 +6,7 @@
 This is an optional config to configure multiple bundles concept. Just pass all requirements using browserslist notation in array. For each item new bundle will be generated with specific id. Then you can serve it with any static server.
 
 *.browsers.json*
-```
+```json
 [
   'not dead',
   'last 5 chrome versions, last 5 safari versions, last 5 firefox versions',
@@ -27,7 +27,7 @@ Wrap your config with `mapConfigToTargets` and pass `browsers` to babel-preset-e
 With the help of `getBundleLocationWithId` we can better resolve bundle location for both server and bundler side.
 
 *webpack.config.js*
-```
+```js
 const path = require('path');
 const { mapConfigToTargets, getBundleLocationWithId } = require('./utils/env-bundles');
 
@@ -66,7 +66,7 @@ module.exports = mapConfigToTargets(({ browsers, id }) => {
 Here we just need to read configs and understand the sizes of bundles. So we could serve smallest bundle possble for every target. For example, chrome will receive the smallest bundle, but IE - possibly the biggest.
 
 *server.js*
-```
+```js
 const BUNDLE_DIRNAME = 'dist';
 const bundlesRoot = path.join(__dirname, BUNDLE_DIRNAME);
 const { getBundleIdByRequest } = initializeBundleGetter({ bundlesRoot });
