@@ -8,9 +8,9 @@ This is an optional config to configure multiple bundles concept. Just pass all 
 *.browsers.json*
 ```json
 [
-  'not dead',
-  'last 5 chrome versions, last 5 safari versions, last 5 firefox versions',
-  'last 1 chrome version, last 1 safari version, last 1 firefox version',
+  "not dead",
+  "last 5 chrome versions, last 5 safari versions, last 5 firefox versions",
+  "last 1 chrome version, last 1 safari version, last 1 firefox version",
 ]
 ```
 
