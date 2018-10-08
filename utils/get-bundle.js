@@ -18,6 +18,8 @@ const defaultRoot = getDefaultRoot();
 //   const webpackConfigPath = path.join(root, 'webpack.config.js');
 // };
 
+const getId = query => md5(query);
+
 const getBundleStatistics = (bundleRoot, browsers) => {
   return browsers.map(query => {
     const id = getId(query);
@@ -32,7 +34,6 @@ const getBundleStatistics = (bundleRoot, browsers) => {
 
 // Keep it in the separate module to extend in the future.
 const parseQuery = query => browserslist(query);
-const getId = query => md5(query);
 const queryToMap = query => {
   const parsed = parseQuery(query);
 
