@@ -6,9 +6,9 @@ const browserslist = require('browserslist');
 const parseUA = require('ua-parser-js');
 const path = require('path');
 const fs = require('fs');
-const md5 = require('md5');
 const { sync } = require('glob');
 const { readTargetsFromConfig } = require('./env-bundles');
+const getId = require('./get-id');
 
 const getDefaultRoot = () => process.cwd();
 const defaultRoot = getDefaultRoot();
@@ -17,8 +17,6 @@ const defaultRoot = getDefaultRoot();
 // const getBundleLocationWithWebpack = (root = getDefaultRoot(), borwsers) => {
 //   const webpackConfigPath = path.join(root, 'webpack.config.js');
 // };
-
-const getId = query => md5(query);
 
 const getBundleStatistics = (bundleRoot, browsers) => {
   return browsers.map(query => {

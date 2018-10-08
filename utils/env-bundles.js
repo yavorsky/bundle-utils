@@ -9,7 +9,7 @@ to acces needed files.
 
 const fs = require('fs');
 const path = require('path');
-const md5 = require('md5');
+const getId = require('./get-id');
 
 const BROWSERS_CONFIG_NAME = '.browsers.json';
 const defaultOptions = {
@@ -33,7 +33,7 @@ const mapConfigToTargets = (opts, fn) => {
 
   const parsedTargets = options.targets || readTargetsFromConfig(options.root);
   return parsedTargets.map(browsers => {
-    return handler({ browsers, id: md5(browsers) });
+    return handler({ browsers, id: getId(browsers) });
   });
 };
 
