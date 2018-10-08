@@ -11,11 +11,7 @@ describe('server', () => {
     beforeAll(() => {
       generateExamples('../../server/fixtures/express-server');
       const configPath = path.join(__dirname, 'fixtures/express-server', 'webpack.config.js');
-      try {
-        execSync(`webpack --config=${configPath}`);
-      } catch (err) {
-        console.log(err.stderr.toString() || err.stdout.toString());
-      }
+      execSync(`webpack --config=${configPath}`);
       const app = require('./fixtures/express-server/server');
       request = supertest.agent(app);
     });
