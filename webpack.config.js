@@ -7,6 +7,7 @@ const { mapConfigToTargets, getBundleLocationWithId } = require('./utils/env-bun
 
 module.exports = mapConfigToTargets(({ browsers, id }) => {
   return {
+    mode: 'production',
     entry: [path.join(__dirname, 'app/main.js')],
     output: {
       path: getBundleLocationWithId(`${__dirname}/dist/`, id),

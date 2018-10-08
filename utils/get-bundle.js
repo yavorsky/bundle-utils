@@ -8,6 +8,7 @@ const path = require('path');
 const fs = require('fs');
 const { sync } = require('glob');
 const { readTargetsFromConfig } = require('./env-bundles');
+const getId = require('./get-id');
 
 const getDefaultRoot = () => process.cwd();
 const defaultRoot = getDefaultRoot();
@@ -18,7 +19,8 @@ const defaultRoot = getDefaultRoot();
 // };
 
 const getBundleStatistics = (bundleRoot, browsers) => {
-  return browsers.map((query, id) => {
+  return browsers.map(query => {
+    const id = getId(query);
     const bundleFiles = sync(`${bundleRoot}/${id}/**/*.js`);
     // const bundlePath = path.join(root, 'dist', `${id}`, 'main.js');
     return bundleFiles.reduce((total, bundlePath) => {
@@ -65,14 +67,15 @@ const browsersMap = {
 const getBestBundleDataFromConfig = ({
  config, browser, version, stats
 }) => {
-  return config.reduce((best, current, id) => {
+  return config.reduce((best, current, ind) => {
     const bestSize = best ? best.size : 0;
     const targets = queryToMap(current);
     browser = browsersMap[browser] || browser;
     if (targets[browser] && (targets[browser] <= version || targets[browser] === 'all')) {
-      const currBundleSize = stats[id];
+      const id = getId(current);
+      const currBundleSize = stats[ind];
       if (!bestSize || currBundleSize < bestSize) {
-        return { id: id.toString(), size: currBundleSize, query: current };
+        return { id, size: currBundleSize, query: current };
       }
     }
     return best;

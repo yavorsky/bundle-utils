@@ -30,26 +30,26 @@ module.exports = [
     filename: 'for-of.js',
   },
   {
-    code: `function* x () {
+    code: `(function* x () {
   yield* fn();
   yield* fn();
   yield* fn();
-}
+})()
 `,
     count: 300,
     filename: 'generator.js',
   },
-  {
-    code: `async function* x () {
-  yield* fn();
-  await fn();
-  yield* fn();
-  yield* fn();
-}
-`,
-    count: 300,
-    filename: 'async-generator.js',
-  },
+//   {
+//     code: `(async function* x () {
+//   yield* fn();
+//   await fn();
+//   yield* fn();
+//   yield* fn();
+// })()
+// `,
+//     count: 300,
+//     filename: 'async-generator.js',
+//   },
   {
     code: `Promise.resolve();
 [].includes;
