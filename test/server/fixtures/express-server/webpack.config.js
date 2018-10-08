@@ -7,6 +7,7 @@ const { mapConfigToTargets, getBundleLocationWithId } = require('../../../../uti
 
 module.exports = mapConfigToTargets({ root: __dirname }, ({ browsers, id }) => {
   return {
+    mode: 'production',
     entry: [path.join(__dirname, 'app/main.js')],
     output: {
       path: getBundleLocationWithId(`${__dirname}/dist/`, id),
