@@ -1,6 +1,6 @@
 {
   "name": "bundle-utils",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1",
   "description": "Determine best bundle for useragent on the flight.",
   "main": "index.js",
   "repository": {

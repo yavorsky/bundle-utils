@@ -1,4 +1,5 @@
 const { initializeBundleGetter } = require('./utils/get-bundle');
+const getId = require('./utils/get-id');
 const {
   mapConfigToTargets,
   readTargetsFromConfig,
@@ -10,4 +11,5 @@ module.exports = {
   mapConfigToTargets,
   readTargetsFromConfig,
   getBundleLocationWithId,
+  getId,
 };
